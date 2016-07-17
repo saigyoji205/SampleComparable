@@ -54,9 +54,8 @@ public class Model {
                 return -(formatDate1.compareTo(formatDate2));
             } catch (ParseException e) {
                 e.printStackTrace();
+                return 0;
             }
-
-            return 0;
         }
     }
 }
