@@ -9,6 +9,15 @@ import java.util.Date;
  */
 public class Model {
     private Point[] points;
+    private String labelName;
+
+    public void setLabelName(String labelName) {
+        this.labelName = labelName;
+    }
+
+    public String getLabelName() {
+        return labelName;
+    }
 
     public Point[] getPoints() {
         return points;
