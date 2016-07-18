@@ -3,12 +3,13 @@ package com.company.Main.Model;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 
 /**
  * Created by Hirokazu on 2016/07/17.
  */
 public class Model {
-    private Point[] points;
+    private List<Point> points;
     private String labelName;
 
     public void setLabelName(String labelName) {
@@ -19,12 +20,12 @@ public class Model {
         return labelName;
     }
 
-    public Point[] getPoints() {
-        return points;
+    public void setPoints(List<Point> points) {
+        this.points = points;
     }
 
-    public void setPoints(Point[] points) {
-        this.points = points;
+    public List<Point> getPoints() {
+        return points;
     }
 
     public static class Point implements Comparable{
