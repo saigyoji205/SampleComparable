@@ -105,26 +105,31 @@ public class Main {
             sampleList.add(formatDate5);
             sampleList.add(formatDate6);
 
+            //①Date型ArrayListを宣言
             List<Date> dateList = new ArrayList<Date>();
 
+            //②Object型ArrayListからDate型のみ取り出し①で用意したArrayListに追加
             for (int i = 1; i < 1 + dateCount; i++) {
                 if (sampleList.get(i) instanceof Date) {
                     dateList.add((Date) sampleList.get(i));
                 }
             }
+            //③①のArrayList.sortメソッドで昇順にソート
             dateList.sort(new Comparator<Date>() {
                 @Override
                 public int compare(Date o1, Date o2) {
                     return o1.compareTo(o2);
                 }
             });
-
+            //①Date型ArrayListを宣言
             List<Date> dateList2 = new ArrayList<Date>();
+            //②Object型ArrayListからDate型のみ取り出し①で用意したArrayListに追加
             for (int i = 5; i < 5 + dateCount; i++) {
                 if (sampleList.get(i) instanceof Date) {
                     dateList2.add((Date) sampleList.get(i));
                 }
             }
+            //③①のArrayList.sortメソッドで昇順にソート
             dateList2.sort(new Comparator<Date>() {
                 @Override
                 public int compare(Date o1, Date o2) {
@@ -132,12 +137,13 @@ public class Main {
                 }
             });
 
+            //④Object型ArrayListのDate型の要素にソート後の①を要素が小さい方から代入し直す
             for (int i = 1; i < 1 + dateCount; i++) {
                 if (sampleList.get(i) instanceof Date) {
                     sampleList.set(i, dateList.get(i-1));
                 }
             }
-
+            //④Object型ArrayListのDate型の要素にソート後の①を要素が小さい方から代入し直す
             for (int i = 5; i < 5 + dateCount; i++) {
                 if (sampleList.get(i) instanceof Date) {
                     sampleList.set(i, dateList2.get(i-5));
