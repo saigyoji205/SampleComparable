@@ -2,6 +2,7 @@ package com.company.Main.Model;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Comparator;
 import java.util.Date;
 import java.util.List;
 
@@ -9,7 +10,7 @@ import java.util.List;
  * Created by Hirokazu on 2016/07/17.
  */
 public class Model {
-    private List<Point> points;
+    private Point[] points;
     private String labelName;
 
     public void setLabelName(String labelName) {
@@ -20,15 +21,23 @@ public class Model {
         return labelName;
     }
 
-    public void setPoints(List<Point> points) {
-        this.points = points;
-    }
+//    public void setPoints(List<Point> points) {
+//        this.points = points;
+//    }
 
-    public List<Point> getPoints() {
+//    public List<Point> getPoints() {
+//        return points;
+//    }
+
+    public Point[] getPoints() {
         return points;
     }
 
-    public static class Point implements Comparable{
+    public void setPoints(Point[] points) {
+        this.points = points;
+    }
+
+    public static class Point implements Comparable,Comparator{
 
         private String expireDate;
         private String name;
@@ -66,6 +75,23 @@ public class Model {
                 e.printStackTrace();
                 return 0;
             }
+        }
+
+        @Override
+        public int compare(Object o1, Object o2) {
+            if (o1 instanceof Model.Point && o2 instanceof Model.Point) {
+                    Model.Point point1 = (Model.Point) o1;
+                    Model.Point point2 = (Model.Point) o2;
+                    SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd");
+                    try {
+                        Date formatDate1 = sdf.parse(point1.getExpireDate());
+                        Date formatDate2 = sdf.parse(point2.getExpireDate());
+                        return formatDate1.compareTo(formatDate2);
+                    } catch (ParseException e) {
+                        e.printStackTrace();
+                    }
+                }
+            return 0;
         }
     }
 }
